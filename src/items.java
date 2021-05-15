@@ -73,8 +73,4 @@ public class items
         this.inStoreLoc = inStoreLoc;
     }
 
-    public void printItem()
-    {
-        System.out.printf(getName() + "%10d" + getPrice() + "%10s" + getExpirationDate() + "%10s" + getInStoreLoc());
-    }
 }

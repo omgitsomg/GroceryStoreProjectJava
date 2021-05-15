@@ -14,7 +14,8 @@ public class GroceryStoreProject
     public static void main(String [] args)
     {
 
-
+        GroceryStore gs1 = new GroceryStore();
+        gs1.printGroceryStoreInfo();
 
     }
 }
