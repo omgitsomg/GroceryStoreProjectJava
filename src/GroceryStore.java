@@ -1,13 +1,14 @@
 /***************************************************************
- *      Project Name:
- *      Developer's Name:
- *      Project Description:
+ *      Project Name: Grocery Store
+ *      Developer's Name: Kevin Ly
+ *      Project Description: This is my first independent project for fun and practice
  *      Date Created: 5/14/2021
- *      Last Modified: 5/14/2021
+ *      Last Modified: 5/16/2021
  *
  *
  */
 
+import java.util.ArrayList;
 
 public class GroceryStore
 {
@@ -15,31 +16,34 @@ public class GroceryStore
     static int DEFAULTINVENTORYSIZE = 50;
     static int EMPLOYEETEAMSIZE = 20;
 
-    private items[] items;
+    private ArrayList<items> itemList;
     private String[] employees;
     private int currentInventorySize;
 
-
     public GroceryStore()
     {
-
-        this.items = new items[DEFAULTINVENTORYSIZE];
+        this.itemList = new ArrayList<>(DEFAULTINVENTORYSIZE);
+        for (int i = 0; i < DEFAULTINVENTORYSIZE; i++)
+        {
+            this.itemList.add(new items());
+        }
         this.employees = new String[EMPLOYEETEAMSIZE];
         this.currentInventorySize = 0;
     }
 
-    public GroceryStore(items[] newItems, String[] newEmployees)
+    public GroceryStore(ArrayList<items> newItems, String[] newEmployees)
     {
-
-        this.items = new items[DEFAULTINVENTORYSIZE];
-        System.arraycopy(newItems, 0, this.items, 0, DEFAULTINVENTORYSIZE);
+        for (items item : newItems)
+        {
+            this.itemList.add(item);
+        }
         this.employees = new String[EMPLOYEETEAMSIZE];
         System.arraycopy(newEmployees, 0, this.employees, 0,EMPLOYEETEAMSIZE);
 
         this.currentInventorySize = 0;
-        for(int i = 0; i < newItems.length; i++)
+        for(int i = 0; i < newItems.size(); i++)
         {
-            if (this.items[i] != null)
+            if (this.itemList != null)
             {
                 currentInventorySize++;
             }
@@ -48,29 +52,49 @@ public class GroceryStore
 
     public void restockItem(String itemName, int itemPrice, String expirationDate, String instoreLoc)
     {
-
         if (currentInventorySize == DEFAULTINVENTORYSIZE)
         {
-            System.out.println("The grocery store's inventory is full right now.\nCannot restock " + itemName);
+            System.out.println("The grocery store's inventory is full right now.\nCannot restock " + itemName + ".");
         }
         else
         {
-            this.items[currentInventorySize] = new items(itemName, itemPrice, expirationDate, instoreLoc);
+            this.itemList.add(new items(itemName, itemPrice, expirationDate, instoreLoc));
             currentInventorySize++;
         }
     }
 
-    public void addItem(String itemName, int itemPrice, String expirationDate, String instoreLoc)
+    public void addItem()
     {
-
-        items[currentInventorySize] = new items(itemName, itemPrice, expirationDate, instoreLoc);
-        currentInventorySize++;
+        if (currentInventorySize == DEFAULTINVENTORYSIZE)
+        {
+            System.out.println("The grocery store's inventory is full right now.\nCannot add more items.");
+        }
+        else
+        {
+            itemList.remove(currentInventorySize);
+            itemList.add(currentInventorySize, new items());
+            currentInventorySize++;
+        }
     }
 
-    //public void printItem()
-    //{
-        //System.out.printf(getName() + "%10d" + getPrice() + "%10s" + getExpirationDate() + "%10s" + getInStoreLoc());
-    //}
+    public void addItem(String itemName, double itemPrice, String expirationDate, String instoreLoc)
+    {
+        if (currentInventorySize == DEFAULTINVENTORYSIZE)
+        {
+            System.out.println("The grocery store's inventory is full right now.\nCannot add more items.");
+        }
+        else
+        {
+            itemList.remove(currentInventorySize);
+            itemList.add(currentInventorySize, new items(itemName, itemPrice, expirationDate, instoreLoc));
+            currentInventorySize++;
+        }
+    }
+
+    public void printItem(items item)
+    {
+        System.out.printf("%-35s|%-15f|%-35s|%-35s|\n", item.getName(), item.getPrice(), item.getExpirationDate(),  item.getInStoreLoc());
+    }
 
 
     public void printGroceryStoreInfo()
@@ -80,8 +104,12 @@ public class GroceryStore
         String expDate = "Expiration Date";
         String storeAisle = "Store Aisle";
         System.out.printf("%-35s|%-15s|%-35s|%-35s|\n", itemName, itemPrice, expDate, storeAisle);
-        //System.out.printf("%-10s\n", itemName);
         System.out.println("___________________________________|_______________|___________________________________|___________________________________|");
+        for (int i = 0; i < itemList.size(); i++)
+        {
+            printItem(itemList.get(i));
+            System.out.println("___________________________________|_______________|___________________________________|___________________________________|");
+        }
     }
 
 }

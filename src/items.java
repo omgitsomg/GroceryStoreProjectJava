@@ -3,7 +3,7 @@
  *      Developer's Name:
  *      Project Description:
  *      Date Created: 5/14/2021
- *      Last Modified: 5/14/2021
+ *      Last Modified: 5/16/2021
  *
  *
  */
@@ -19,10 +19,10 @@ public class items
 
     public items()
     {
-        name = "item #1";
-        price = 5.00;
-        expirationDate = "5/28/2021";
-        inStoreLoc = "Snack Aisle";
+        name = "Empty";
+        price = 0.00;
+        expirationDate = "Empty";
+        inStoreLoc = "Empty";
     }
 
     public items(String newName, double newPrice, String newExpiration, String newLoc)
