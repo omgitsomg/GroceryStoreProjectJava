@@ -77,8 +77,15 @@ public class GroceryStore
         }
     }
 
-    public void addItem(String itemName, double itemPrice, String expirationDate, String instoreLoc)
+    public void addItem(String itemString)
     {
+        String delim = "[,]+";
+        String[] tokens = itemString.split(delim);
+        String itemName = tokens[0];
+        double itemPrice = Double.parseDouble(tokens[1]);
+        String expirationDate = tokens[2];
+        String instoreLoc = tokens[3];
+
         if (currentInventorySize == DEFAULTINVENTORYSIZE)
         {
             System.out.println("The grocery store's inventory is full right now.\nCannot add more items.");
@@ -89,6 +96,11 @@ public class GroceryStore
             itemList.add(currentInventorySize, new items(itemName, itemPrice, expirationDate, instoreLoc));
             currentInventorySize++;
         }
+    }
+
+    public void removeItem(String itemString)
+    {
+
     }
 
     public void printItem(items item)
