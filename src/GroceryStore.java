@@ -9,6 +9,8 @@
  */
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class GroceryStore
 {
@@ -100,6 +102,36 @@ public class GroceryStore
 
     public void removeItem(String itemString)
     {
+        String delim = "[,]+";
+        String[] tokens = itemString.split(delim);
+        String itemName = tokens[0];
+        double itemPrice = Double.parseDouble(tokens[1]);
+        String expirationDate = tokens[2];
+        String instoreLoc = tokens[3];
+
+        List<items> removeList = new ArrayList<items>();
+
+        for (items item : itemList)
+        {
+            if (itemName.equals(item.getName()))
+            {
+                if (itemPrice == item.getPrice())
+                {
+                    if (expirationDate.equals(item.getExpirationDate()))
+                    {
+                        if (instoreLoc.equals(item.getInStoreLoc()))
+                        {
+                            removeList.add(item);
+                        }
+                    }
+                }
+            }
+        }
+        itemList.removeAll(removeList);
+
+        /**
+         * The removeItem method has a small bug. When removing the item, the ArrayList will decrease to 49 from 50, so it won't show EMPTY for the 50th item because it only shows the 49 items.
+         */
 
     }
 
