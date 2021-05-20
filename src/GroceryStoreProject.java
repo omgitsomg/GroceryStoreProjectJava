@@ -19,7 +19,7 @@ public class GroceryStoreProject
         String userInput = "";
 
         GroceryStore gs1 = new GroceryStore();
-        for (int i = 0; i < 49; i++)
+        for (int i = 0; i < 48; i++)
         {
             gs1.addItem("Rice, 5.00, 06/02/2021, Grains Aisle");
         }
@@ -42,15 +42,29 @@ public class GroceryStoreProject
                 case "1" -> gs1.printGroceryStoreInfo();
                 case "2" ->
                         {
-                            System.out.println("Please enter the name, price, expiration date, and the location of the item\n(Name, Price, mm/dd/yyyy, location)");
-                            userInput = in.nextLine();
-                            gs1.addItem(userInput);
+                            try
+                            {
+                                System.out.println("Please enter the name, price, expiration date, and the location of the item\n(Name, Price, mm/dd/yyyy, location)");
+                                userInput = in.nextLine();
+                                gs1.addItem(userInput);
+                            }
+                            catch (Exception exception)
+                            {
+                                System.out.println("Invalid Item");
+                            }
                         }
                 case "3" ->
                         {
-                            System.out.println("Please enter the name, price, expiration date, and the location of the item to purchase\n(Name, Price, mm/dd/yyyy, location)");
-                            userInput = in.nextLine();
-                            gs1.removeItem(userInput);
+                            try
+                            {
+                                System.out.println("Please enter the name, price, expiration date, and the location of the item to purchase\n(Name, Price, mm/dd/yyyy, location)");
+                                userInput = in.nextLine();
+                                gs1.removeItem(userInput);
+                            }
+                            catch (Exception exception)
+                            {
+                                System.out.println("Invalid Item");
+                            }
                         }
                 case "4" -> System.out.println("Exiting the Grocery Store");
             }

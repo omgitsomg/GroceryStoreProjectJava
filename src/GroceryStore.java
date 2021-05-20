@@ -109,10 +109,10 @@ public class GroceryStore
         String expirationDate = tokens[2];
         String instoreLoc = tokens[3];
 
-        List<items> removeList = new ArrayList<items>();
-
-        for (items item : itemList)
+        for (Iterator<items> it = itemList.iterator(); it.hasNext(); )
         {
+            items item = it.next();
+
             if (itemName.equals(item.getName()))
             {
                 if (itemPrice == item.getPrice())
@@ -121,23 +121,25 @@ public class GroceryStore
                     {
                         if (instoreLoc.equals(item.getInStoreLoc()))
                         {
-                            removeList.add(item);
+                            it.remove();
                         }
                     }
                 }
             }
         }
-        itemList.removeAll(removeList);
+
+        itemList.add(new items());
+        currentInventorySize--;
 
         /**
-         * The removeItem method has a small bug. When removing the item, the ArrayList will decrease to 49 from 50, so it won't show EMPTY for the 50th item because it only shows the 49 items.
+         * The removeItem method has a small bug. The function removes multiple items with the same name and object properties.
          */
 
     }
 
     public void printItem(items item)
     {
-        System.out.printf("%-35s|%-15f|%-35s|%-35s|\n", item.getName(), item.getPrice(), item.getExpirationDate(),  item.getInStoreLoc());
+        System.out.printf("%d%-35s|%-15f|%-35s|%-35s|\n", currentInventorySize, item.getName(), item.getPrice(), item.getExpirationDate(),  item.getInStoreLoc());
     }
 
 
