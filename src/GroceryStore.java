@@ -9,8 +9,6 @@
  */
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class GroceryStore
 {
@@ -100,48 +98,25 @@ public class GroceryStore
         }
     }
 
-    public void removeItem(String itemString)
+    public void removeItem(int index)
     {
-        String delim = "[,]+";
-        String[] tokens = itemString.split(delim);
-        String itemName = tokens[0];
-        double itemPrice = Double.parseDouble(tokens[1]);
-        String expirationDate = tokens[2];
-        String instoreLoc = tokens[3];
-
-        for (Iterator<items> it = itemList.iterator(); it.hasNext(); )
+        if (itemList.get(index).getName().equals("Empty"))
         {
-            items item = it.next();
-
-            if (itemName.equals(item.getName()))
-            {
-                if (itemPrice == item.getPrice())
-                {
-                    if (expirationDate.equals(item.getExpirationDate()))
-                    {
-                        if (instoreLoc.equals(item.getInStoreLoc()))
-                        {
-                            it.remove();
-                        }
-                    }
-                }
-            }
+            System.out.println("Invalid Item");
         }
+        else
+        {
+            itemList.remove(index);
 
-        itemList.add(new items());
-        currentInventorySize--;
-
-        /**
-         * The removeItem method has a small bug. The function removes multiple items with the same name and object properties.
-         */
-
+            itemList.add(new items());
+            currentInventorySize--;
+        }
     }
 
-    public void printItem(items item)
+    public void printItem(items item, int index)
     {
-        System.out.printf("%d%-35s|%-15f|%-35s|%-35s|\n", currentInventorySize, item.getName(), item.getPrice(), item.getExpirationDate(),  item.getInStoreLoc());
+        System.out.printf("%-2d. %-35s|%-15f|%-35s|%-30s|\n", index, item.getName(), item.getPrice(), item.getExpirationDate(),  item.getInStoreLoc());
     }
-
 
     public void printGroceryStoreInfo()
     {
@@ -149,12 +124,12 @@ public class GroceryStore
         String itemPrice = "Item Price";
         String expDate = "Expiration Date";
         String storeAisle = "Store Aisle";
-        System.out.printf("%-35s|%-15s|%-35s|%-35s|\n", itemName, itemPrice, expDate, storeAisle);
-        System.out.println("___________________________________|_______________|___________________________________|___________________________________|");
+        System.out.printf("%-39s|%-15s|%-35s|%-30s|\n", itemName, itemPrice, expDate, storeAisle);
+        System.out.println("_______________________________________|_______________|___________________________________|______________________________|");
         for (int i = 0; i < itemList.size(); i++)
         {
-            printItem(itemList.get(i));
-            System.out.println("___________________________________|_______________|___________________________________|___________________________________|");
+            printItem(itemList.get(i), i + 1);
+            System.out.println("_______________________________________|_______________|___________________________________|______________________________|");
         }
     }
 

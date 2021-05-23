@@ -57,9 +57,9 @@ public class GroceryStoreProject
                         {
                             try
                             {
-                                System.out.println("Please enter the name, price, expiration date, and the location of the item to purchase\n(Name, Price, mm/dd/yyyy, location)");
+                                System.out.println("Please enter the index of the item");
                                 userInput = in.nextLine();
-                                gs1.removeItem(userInput);
+                                gs1.removeItem(Integer.parseInt(userInput) - 1);
                             }
                             catch (Exception exception)
                             {
@@ -69,9 +69,6 @@ public class GroceryStoreProject
                 case "4" -> System.out.println("Exiting the Grocery Store");
             }
         }
-
-
-
     }
 }
 

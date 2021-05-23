@@ -8,6 +8,7 @@
  *
  */
 
+import java.util.Random;
 
 public class items
 {
@@ -16,6 +17,8 @@ public class items
     private double price;
     private String expirationDate;
     private String inStoreLoc;
+    private int serialNum;
+    private Random randomNumGen;
 
     public items()
     {
@@ -23,6 +26,7 @@ public class items
         price = 0.00;
         expirationDate = "Empty";
         inStoreLoc = "Empty";
+        serialNum = 0;
     }
 
     public items(String newName, double newPrice, String newExpiration, String newLoc)
@@ -31,6 +35,8 @@ public class items
         this.price = newPrice;
         this.expirationDate = newExpiration;
         this.inStoreLoc = newLoc;
+        randomNumGen = new Random();
+        this.serialNum = randomNumGen.nextInt(50);
     }
 
     public String getName()
@@ -53,6 +59,12 @@ public class items
         return inStoreLoc;
     }
 
+    public int getSerialNum()
+    {
+        return serialNum;
+    }
+
+
     public void setName(String name)
     {
         this.name = name;
@@ -71,6 +83,11 @@ public class items
     public void setInStoreLoc(String inStoreLoc)
     {
         this.inStoreLoc = inStoreLoc;
+    }
+
+    public void setSerialNum(int serialNum)
+    {
+        this.serialNum = serialNum;
     }
 
 }
