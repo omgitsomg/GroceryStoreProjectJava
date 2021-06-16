@@ -39,8 +39,12 @@ public class GroceryStoreProject
 
             switch (userInput)
             {
-                case "1" -> gs1.printGroceryStoreInfo();
-                case "2" ->
+                case "1": 
+                {
+                    gs1.printGroceryStoreInfo();
+                    break;
+                }            
+                case "2":
                         {
                             try
                             {
@@ -52,8 +56,9 @@ public class GroceryStoreProject
                             {
                                 System.out.println("Invalid Item");
                             }
+                            break;
                         }
-                case "3" ->
+                case "3":
                         {
                             try
                             {
@@ -65,8 +70,13 @@ public class GroceryStoreProject
                             {
                                 System.out.println("Invalid Item");
                             }
+                            break;
                         }
-                case "4" -> System.out.println("Exiting the Grocery Store");
+                case "4": 
+                {
+                    System.out.println("Exiting the Grocery Store");
+                    break;
+                }
             }
         }
     }
