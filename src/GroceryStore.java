@@ -3,7 +3,7 @@
  *      Developer's Name: Kevin Ly
  *      Project Description: This is my first independent project for fun and practice
  *      Date Created: 5/14/2021
- *      Last Modified: 5/16/2021
+ *      Last Modified: 6/16/2021
  *
  *
  */
@@ -132,5 +132,5 @@ public class GroceryStore
             System.out.println("_______________________________________|_______________|___________________________________|______________________________|");
         }
     }
-
 }
+
